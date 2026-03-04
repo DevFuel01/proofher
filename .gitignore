@@ -1,0 +1,19 @@
+# XAMPP / PHP / Node
+node_modules/
+.env
+.DS_Store
+Thumbs.db
+*.log
+
+# Hardhat
+artifacts/
+cache/
+typechain-types/
+coverage/
+coverage.json
+.openzeppelin/
+.hardhat/
+
+# VS Code
+.vscode/
+.history/

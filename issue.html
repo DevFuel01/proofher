@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issue Credential - ProofHer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.0/ethers.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans min-h-screen flex flex-col">
+    <header class="bg-white shadow-sm py-4">
+        <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-indigo-600">ProofHer</a>
+            <div class="flex items-center space-x-4">
+                <a href="verify.html" class="text-gray-600 hover:text-indigo-600 font-medium">Verify</a>
+                <button id="connectWallet" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-md font-medium hover:bg-gray-200 border border-gray-300">Connect Wallet</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-3xl mx-auto w-full p-4 py-8">
+        <h2 class="text-3xl font-bold mb-6">Issue a Credential</h2>
+        
+        <div id="alertBox" class="hidden mb-6 p-4 rounded-md font-medium" role="alert"></div>
+
+        <form id="issueForm" class="bg-white shadow-md rounded-lg p-6 space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="full_name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <input type="text" id="full_name" required placeholder="e.g. Jane Doe" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div>
+                    <label for="skill" class="block text-sm font-medium text-gray-700 mb-1">Skill</label>
+                    <input type="text" id="skill" required placeholder="e.g. Digital Marketing, Tailoring" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div>
+                    <label for="level" class="block text-sm font-medium text-gray-700 mb-1">Level / Proficiency</label>
+                    <input type="text" id="level" required placeholder="e.g. Beginner, Advanced" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div>
+                    <label for="issuer_name" class="block text-sm font-medium text-gray-700 mb-1">Issuer / Organization Name</label>
+                    <input type="text" id="issuer_name" required placeholder="e.g. Code For Her NGO" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+            </div>
+            <div>
+                <label for="evidence_url" class="block text-sm font-medium text-gray-700 mb-1">Evidence URL</label>
+                <input type="url" id="evidence_url" required placeholder="https://github.com/..." class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+            <div>
+                <label for="issued_date" class="block text-sm font-medium text-gray-700 mb-1">Issued Date</label>
+                <input type="date" id="issued_date" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+            
+            <button type="submit" id="submitBtn" class="w-full mt-4 bg-indigo-600 text-white font-bold py-3 px-4 rounded-md hover:bg-indigo-700 transition focus:outline-none focus:ring-4 focus:ring-indigo-300">
+                Issue on Blockchain
+            </button>
+            <div id="loadingIndicator" class="hidden text-center text-sm font-medium text-indigo-600 mt-2" aria-live="polite">Processing transaction... Please wait.</div>
+        </form>
+
+        <div id="resultBox" class="hidden mt-8 bg-green-50 border border-green-200 rounded-lg p-6" role="alert">
+            <h3 class="text-lg font-bold text-green-800 mb-2">Credential Issued Successfully!</h3>
+            <p class="text-green-700 mb-4 text-sm" id="txHashDisplay"></p>
+            <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <div id="qrcode" class="bg-white p-2 rounded shadow-sm border border-gray-200"></div>
+                <div class="flex-1 overflow-hidden">
+                    <p class="text-sm font-medium text-gray-700 mb-1">Verification Link:</p>
+                    <div class="flex items-center gap-2">
+                        <a id="verifyLink" href="#" target="_blank" class="text-indigo-600 text-sm font-medium hover:underline break-all block truncate flex-grow"></a>
+                        <button type="button" id="copyLinkBtn" class="px-3 py-1 bg-white border border-gray-300 text-gray-700 text-xs font-semibold rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm whitespace-nowrap">
+                            Copy Link
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/issue.js"></script>
+</body>
+</html>
