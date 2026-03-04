@@ -1,10 +1,14 @@
 # Architectural Decisions
 
+## Why Blockchain?
+Blockchain was chosen to ensure credential authenticity and prevent tampering.  
+Traditional databases can be modified by administrators, but blockchain provides immutable proof of issuance.
+
 ## Why Polygon Amoy?
-Polygon provides extremely fast block times and very low gas fees, making it accessible for communities and NGOs that want to issue credentials at scale. We chose the Amoy testnet for this hackathon to ensure stable, realistic testnet operations while preparing for a seamless Mainnet transition.
+Polygon provides extremely fast block times and very low gas fees, making it accessible for communities and NGOs that want to issue credentials at scale. I chose the Amoy testnet for this hackathon to ensure stable, realistic testnet operations while preparing for a seamless Mainnet transition. Using a testnet also allows the system to demonstrate real blockchain interaction without requiring real financial transactions.
 
 ## Why Hash-Only Storage?
-Storing Personally Identifiable Information (PII) like names and skills directly on a public blockchain violates privacy principles and the General Data Protection Regulation (GDPR). By storing only a SHA-256 hash on-chain, we ensure that the data is tamper-proof without exposing any sensitive information to the public ledger.
+Storing Personally Identifiable Information (PII) like names and skills directly on a public blockchain violates privacy principles and the General Data Protection Regulation (GDPR). By storing only a SHA-256 hash on-chain, I ensure that the data is tamper-proof without exposing any sensitive information to the public ledger.
 
 ## Why SHA-256?
 SHA-256 is natively supported by modern web browsers via `crypto.subtle.digest`, allowing us to compute hashes on the client side without relying on heavy external libraries like CryptoJS. It perfectly converts into a `bytes32` Solidity data type. 
