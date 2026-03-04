@@ -74,204 +74,189 @@ Transactions on the blockchain require "Gas Fees". Since ProofHer is on a testne
 ## Demo Walkthrough Steps
 For judging or live presentations, follow the steps in [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md).
 
+# ProofHer
+### Verifiable Skill Credentials for Women
 
-ProofHer
-Verifiable Skill Credentials for Women
+ProofHer is a blockchain-powered credential verification platform that allows organizations and communities to issue tamper-proof, privacy-preserving skill credentials for women.
 
-ProofHer is a blockchain-powered credential verification platform that allows organizations and communities to issue tamper-proof, privacy-preserving skill credentials to women.
+Many women acquire valuable skills through community programs, informal education, and mentorship but lack trusted proof of their abilities. ProofHer solves this by creating verifiable credentials secured by blockchain technology.
 
-Many women acquire valuable skills through community programs, informal education and mentorship but lack trusted proof of their abilities. ProofHer solves this by creating verifiable credentials secured by blockchain technology.
+---
 
-Problem
-
+# Problem
 Women in many communities gain skills through informal training programs but often lack officially recognized certifications.
 
 Traditional certificates are:
 
-Easy to forge
-
-Hard to verify
-
-Not globally trusted
-
-Dependent on centralized institutions
+- Easy to forge
+- Hard to verify
+- Not globally trusted
+- Dependent on centralized institutions
 
 This creates barriers to employment, funding, and professional recognition.
 
-Solution
+---
 
+# Solution
 ProofHer enables organizations to issue verifiable digital credentials that can be instantly validated using blockchain.
-
 Instead of storing personal data on the blockchain, ProofHer stores only a cryptographic hash of the credential, ensuring:
 
-Privacy protection
-
-Tamper-proof verification
-
-Public trust
+- Privacy protection
+- Tamper-proof verification
+- Public trust
 
 Anyone can verify a credential in seconds.
 
-Success Test
+---
 
+# Success Test
 From a clean start, the system allows a user to:
 
-Issue a credential
-
-Write a verification hash to the blockchain
-
-Open the verification page
-
-Confirm that the credential is valid
+1. Issue a credential
+2. Write a verification hash to the blockchain
+3. Open the verification page
+4. Confirm that the credential is valid
 
 All within under 60 seconds.
 
-Key Features
-Credential Issuance
+---
+
+# Key Features
+
+## Credential Issuance
 
 Organizations can issue credentials containing:
 
-Full Name
-
-Skill
-
-Skill Level
-
-Issuer Organization
-
-Issue Date
-
-Evidence URL (certificate or portfolio)
+- Full Name
+- Skill
+- Skill Level
+- Issuer Organization
+- Issue Date
+- Evidence URL (certificate or portfolio)
 
 The credential is stored in a database while its hash is stored on blockchain.
 
-Blockchain Verification
+---
+
+## Blockchain Verification
 
 Verification compares the stored blockchain hash with a newly computed hash from the credential data.
 
 Results show:
 
-Valid / Invalid status
+- Valid / Invalid status
+- Issuer wallet address
+- Blockchain timestamp
+- Endorsement count
 
-Issuer wallet address
+---
 
-Blockchain timestamp
-
-Endorsement count
-
-Evidence Link
-
+## Evidence Link
 Each credential includes an Evidence URL linking to proof such as:
 
-Certificates
-
-Training documentation
-
-Portfolio evidence
+- Certificates
+- Training documentation
+- Portfolio evidence
 
 Certificates are securely hosted using Supabase Storage.
 
-Community Endorsements
+---
 
+## Community Endorsements
 Community members can endorse credentials on blockchain to strengthen trust and credibility.
 
-QR Code Verification
+---
 
+## QR Code Verification
 Credentials can include a QR code linking directly to the verification page.
 
 This allows employers to verify credentials instantly.
 
-Technology Stack
-Frontend
+---
 
-HTML5
+# Technology Stack
 
-Tailwind CSS
+## Frontend
 
-JavaScript
+- HTML5
+- Tailwind CSS
+- JavaScript
+- Ethers.js
 
-Ethers.js
+## Backend
 
-Backend
+- PHP
+- MySQL
+- REST APIs
 
-PHP
+## Blockchain
 
-MySQL
+- Solidity Smart Contract
+- Polygon Amoy Testnet
+- Hardhat Deployment
 
-REST APIs
+## Storage
 
-Blockchain
+- Supabase Storage (for certificate evidence)
 
-Solidity Smart Contract
+---
 
-Polygon Amoy Testnet
-
-Hardhat Deployment
-
-Storage
-
-Supabase Storage (for certificate evidence)
-
-Privacy & Security Design
-
+# Privacy & Security Design
 ProofHer was designed with privacy and security in mind.
 
 Key principles:
 
-No personal data stored on blockchain
+- No personal data stored on blockchain
+- SHA-256 cryptographic hashing
+- Secure backend queries using prepared statements
+- Deterministic hashing for verification consistency
+- Public blockchain transparency
 
-SHA-256 cryptographic hashing
+---
 
-Secure backend queries using prepared statements
-
-Deterministic hashing for verification consistency
-
-Public blockchain transparency
-
-Smart Contract
-
+# Smart Contract
 The smart contract stores:
 
-Credential ID
-
-Credential Hash
-
-Issuer Address
-
-Timestamp
-
-Endorsement Count
+- Credential ID
+- Credential Hash
+- Issuer Address
+- Timestamp
+- Endorsement Count
 
 Functions include:
 
-issueCredential()
+- issueCredential()
+- endorseCredential()
+- getCredential()
 
-endorseCredential()
+---
 
-getCredential()
+# System Architecture
 
-System Architecture
 User → Web Interface
-        ↓
+↓
 Backend API (PHP)
-        ↓
+↓
 Database (Credential Data)
-        ↓
+↓
 Hash Generated
-        ↓
+↓
 Blockchain Transaction (Polygon)
-        ↓
+↓
 Verification Page
-How to Run the Project Locally
-1. Install XAMPP
+
+---
+
+# How to Run the Project Locally
+
+## 1. Install XAMPP
 
 Start:
 
-Apache
-
+Apache  
 MySQL
 
-2. Import Database
+## 2. Import Database
 
 Import the file:
 
@@ -279,79 +264,75 @@ db/schema.sql
 
 using phpMyAdmin.
 
-3. Configure Contract Address
+## 3. Configure Contract Address
 
 Update the file:
 
-public/js/config.js
+js/config.js
 
 Add your deployed Polygon Amoy contract address.
 
-4. Open the Application
+## 4. Open the Application
 
 Visit:
 
-http://localhost/proofher/public
-Demo Flow
+http://localhost/proofher/
 
-Issue a credential for a user
+---
 
-Submit transaction to Polygon
+# Demo Flow
 
-Copy Credential ID
+1. Issue a credential for a user
+2. Submit transaction to Polygon
+3. Copy Credential ID
+4. Open verification page
+5. Confirm credential validity
 
-Open verification page
+---
 
-Confirm credential validity
-
-SDG Alignment
+# SDG Alignment
 
 ProofHer supports the following United Nations Sustainable Development Goals:
 
-SDG 5 – Gender Equality
-
+SDG 5 – Gender Equality  
 Empowering women with trusted digital credentials.
 
-SDG 8 – Decent Work and Economic Growth
-
+SDG 8 – Decent Work and Economic Growth  
 Helping women demonstrate skills for employment and entrepreneurship.
 
-SDG 10 – Reduced Inequalities
-
+SDG 10 – Reduced Inequalities  
 Providing equal opportunities for skill recognition.
 
-Hackathon Project
+---
+
+# Hackathon Project
 
 Built for:
 
 #75HER Challenge Hackathon
 
 Track: Blockchain
-
 Focus: Technology solutions for women and marginalized communities.
 
-Future Improvements
+---
 
+# Future Improvements
 Future development may include:
 
-Decentralized identity integration
+- Decentralized identity integration
+- Multi-issuer credential networks
+- Mobile credential wallet
+- Credential NFT support
+- Global verification registry
 
-Multi-issuer credential networks
+---
 
-Mobile credential wallet
-
-Credential NFT support
-
-Global verification registry
-
-License
-
+# License
 MIT License
 
-Author
+---
 
-Created by Idris Ibrahim
-
+# Author
+Idris Ibrahim
 Software Developer | Founder | Tech Educator
-
 Mission: Empower 1,000,000+ people with technology.
