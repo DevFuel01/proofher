@@ -11,3 +11,11 @@
 ### 3. Duplicate Endorsement Risk
 **Risk:** A single malicious actor could endorse a credential thousands of times, artificially inflating its perceived value.  
 **Mitigation:** The `ProofHer.sol` smart contract includes a nested mapping `mapping(string => mapping(address => bool)) public hasEndorsed;` which strictly enforces that an address can endorse a specific credential ID only once.
+
+## 4. Duplicate Credential Issuance
+**Risk** Issuing duplicate credentials could reduce system trust.
+**Mitigation:** Each credential has a unique credential ID enforced by a database constraint.
+
+## 5. Smart Contract Abuse
+**Risk** Anyone interacting with the smart contract could attempt unauthorized actions.
+**Mitigation:** Credential issuance requires a connected wallet, and endorsements are limited to one per wallet address.
